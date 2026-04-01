@@ -13,7 +13,11 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
       - ./seeder.sql:/docker-entrypoint-initdb.d/02-seeder.sql:ro
 
-  lang:
+  bash:
+    image: bash:5.2
+    volumes:
+      - ./legacy.sh:/app/legacy.sh
+    command: ["bash", "/app/legacy.sh"]
 
 volumes:
   postgres_data:
